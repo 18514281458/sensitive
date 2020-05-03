@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * 需要脱敏的model
  * @author liangwei
  */
-@Target({ElementType.FIELD,ElementType.METHOD})
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented

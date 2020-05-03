@@ -8,3 +8,5 @@
       用于service 方法脱敏
 * sensitive-core
     乱78糟代码都在这里
+* sensitive-demo
+    demo
