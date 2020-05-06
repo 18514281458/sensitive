@@ -19,50 +19,58 @@ import java.util.Objects;
 public class SensitiveServiceFilter {
 
 
-    public static Object process(Object object) {
+    public static void process(Object object, SensitiveMode sensitiveMode) throws IllegalAccessException {
+
+
+        processDataTypeFilter(object, sensitiveMode);
+
+
+    }
+
+    private static void processDataTypeFilter(Object object, SensitiveMode sensitiveMode) throws IllegalAccessException {
+
+
         if (Objects.isNull(object)) {
-            return null;
+            return;
         }
         Class c = object.getClass();
 
         if (object instanceof Collection) {
             Collection collection = (Collection) object;
             for (Object o1 : collection) {
-                SensitiveServiceFilter.processSelector(o1, o1.getClass());
+                SensitiveServiceFilter.processSelector(o1, o1.getClass(), sensitiveMode);
             }
         } else {
-            SensitiveServiceFilter.processSelector(object, c);
+            SensitiveServiceFilter.processSelector(object, c, sensitiveMode);
 
         }
-        return object;
-
 
     }
 
-    private static void processSelector(Object bean, Class objectClass) {
+    private static void processSelector(Object bean, Class objectClass, SensitiveMode sensitiveMode) throws IllegalAccessException {
 
 
         if (objectClass.isAnnotationPresent(SensitiveModel.class)) {
             SensitiveModel sensitiveModel = (SensitiveModel) objectClass.getAnnotation(SensitiveModel.class);
 
+            if (sensitiveModel.value() != sensitiveMode) {
+                throw new RuntimeException("Entity Annotation SensitiveMode  is error[" + objectClass + "]");
+            }
 
-            if (sensitiveModel.value() == SensitiveMode.AOPSERVIE) {
-                try {
-                    processBean(bean, objectClass);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            } else if (sensitiveModel.value() == SensitiveMode.MYBATIS) {
-                try {
-                    processBean(bean, objectClass);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+            if (sensitiveModel.value() == SensitiveMode.AOPSERVIE && SensitiveMode.AOPSERVIE == sensitiveMode) {
+
+                processBean(bean, objectClass, sensitiveMode);
+
+            } else if (sensitiveModel.value() == SensitiveMode.MYBATIS && sensitiveMode == SensitiveMode.MYBATIS) {
+
+                processBean(bean, objectClass, sensitiveMode);
+
             }
         }
+
     }
 
-    private static void processBean(Object bean, Class bclass) throws IllegalAccessException {
+    private static void processBean(Object bean, Class bclass, SensitiveMode sensitiveMode) throws IllegalAccessException {
         for (Field field : bclass.getDeclaredFields()) {
             field.setAccessible(true);
             Object fieldObject = field.get(bean);
@@ -71,14 +79,14 @@ public class SensitiveServiceFilter {
             }
             if (field.isAnnotationPresent(SensitiveField.class)) {
                 SensitiveField sensitiveField = field.getAnnotation(SensitiveField.class);
-                if (sensitiveField.type() == SensitivieFieldType.STRING&&fieldObject instanceof java.lang.String) {
+                if (sensitiveField.type() == SensitivieFieldType.STRING && fieldObject instanceof java.lang.String) {
                     SensitiveTypeHandler sensitiveTypeHandler = SensitiveTypeRegisty.get(sensitiveField.value());
                     if (sensitiveTypeHandler != null) {
                         String result = sensitiveTypeHandler.handle(fieldObject);
                         field.set(bean, result);
                     }
                 } else if (sensitiveField.type() == SensitivieFieldType.ENTITY) {
-                    process(fieldObject);
+                    processDataTypeFilter(fieldObject, sensitiveMode);
                 }
             }
 

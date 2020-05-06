@@ -13,6 +13,8 @@ public class SensitiveMybatisConfig {
 
     @Bean
     public ConfigurationCustomizer getConfigurationCustomizer() {
+
+
         ResultInterceptor resultInterceptor = new ResultInterceptor();
         return (configuration) -> configuration.addInterceptor(resultInterceptor);
 

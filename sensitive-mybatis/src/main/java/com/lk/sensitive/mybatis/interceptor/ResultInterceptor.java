@@ -1,6 +1,7 @@
 package com.lk.sensitive.mybatis.interceptor;
 
 import com.lk.sensitive.core.filter.SensitiveServiceFilter;
+import com.lk.sensitive.core.type.SensitiveMode;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
@@ -30,7 +31,7 @@ public class ResultInterceptor implements Interceptor {
         if (Objects.isNull(result)) {
             return result;
         }
-        SensitiveServiceFilter.process(result);
+        SensitiveServiceFilter.process(result, SensitiveMode.MYBATIS);
         return result;
     }
 
