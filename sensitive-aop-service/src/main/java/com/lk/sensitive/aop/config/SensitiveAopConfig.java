@@ -9,16 +9,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class InterceptorAnnotationConfig {
+public class SensitiveAopConfig {
  
     @Bean
     public DefaultPointcutAdvisor defaultPointcutAdvisor3() {
 
         SensitiveServiceAspect interceptor = new SensitiveServiceAspect();
- 
         AnnotationMatchingPointcut pointcut = new AnnotationMatchingPointcut(SensitiveServiceAop.class, SensitiveServiceAopMethod.class, false);
-
- 
         // 配置增强类advisor
         DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor();
         advisor.setPointcut(pointcut);

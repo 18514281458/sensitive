@@ -5,11 +5,21 @@ package com.lk.sensitive.core.type;
  */
 public enum SensitiveMode {
     /**
-     * fastjson
+     * MYBATIS
      */
-    FASTJSON,
+    MYBATIS,
     /**
      * service
      */
-    AOPSERVIE
+    AOPSERVIE,
+
+    /**
+     * view response 拦截器
+     */
+    RESPONSE,
+
+    /**
+     * view fastjson转换器
+     */
+    FASTJSON
 }

@@ -4,9 +4,7 @@ import java.lang.annotation.*;
 
 /**
  *
- * #SensitiveServiceAop
- * custome 下 用于方法上 注解
- * all 忽略这个注解
+ * #SensitiveServiceAop 作用方法上
  * @author liangwei
  */
 @Target({ElementType.METHOD})
