@@ -8,6 +8,7 @@ public enum SensitiveType {
      * 不脱
      */
     NONE,
+
     /**
      * 默认
      */

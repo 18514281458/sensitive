@@ -13,7 +13,6 @@ public class SensitiveAopConfig {
  
     @Bean
     public DefaultPointcutAdvisor defaultPointcutAdvisor3() {
-
         SensitiveServiceAspect interceptor = new SensitiveServiceAspect();
         AnnotationMatchingPointcut pointcut = new AnnotationMatchingPointcut(SensitiveServiceAop.class, SensitiveServiceAopMethod.class, false);
         // 配置增强类advisor

@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.39.32.45:30771/Tenant?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+    password: liujinbao
+    username: liujinbao
+mybatis:
+  mapper-locations: classpath:mybatis-mapper/*.xml

@@ -1,8 +1,8 @@
 package com.lk.sensitive.core.annotation;
 
 
-
 import com.lk.sensitive.core.type.SensitiveType;
+import com.lk.sensitive.core.type.SensitivieFieldType;
 
 import java.lang.annotation.*;
 
@@ -20,5 +20,7 @@ public @interface SensitiveField {
      * 不同的脱敏类型置换*的方式不同
      * @return SensitiveType
      */
-    SensitiveType value();
+    SensitiveType value() default SensitiveType.NONE;
+
+    SensitivieFieldType type()default SensitivieFieldType.STRING;
 }

@@ -16,7 +16,6 @@ public class SensitiveServiceAspect implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
 
-
         Object c = methodInvocation.proceed();
 
         SensitiveServiceFilter.process(c);

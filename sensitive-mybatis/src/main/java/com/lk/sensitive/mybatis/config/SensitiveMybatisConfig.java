@@ -12,13 +12,9 @@ import org.springframework.context.annotation.Configuration;
 public class SensitiveMybatisConfig {
 
     @Bean
-    public ConfigurationCustomizer defaultPointcutAdvisor3() {
-
+    public ConfigurationCustomizer getConfigurationCustomizer() {
         ResultInterceptor resultInterceptor = new ResultInterceptor();
-        return (configuration) -> {
-
-            configuration.addInterceptor(resultInterceptor);
-        };
+        return (configuration) -> configuration.addInterceptor(resultInterceptor);
 
 
     }
