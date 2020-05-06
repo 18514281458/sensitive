@@ -10,3 +10,5 @@
     乱78糟代码都在这里
 * sensitive-demo
     demo
+* sensitive-mybatis
+    mybatis 脱敏
