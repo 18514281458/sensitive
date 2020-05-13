@@ -21,8 +21,6 @@ public class NameSensitiveHandler implements SensitiveTypeHandler {
             return "";
         }
         String fullName = src.toString();
-
-
         String name = StringUtils.left(fullName, 1);
         return Strings.padEnd(name, StringUtils.length(fullName), '*');
     }
