@@ -13,7 +13,7 @@
 * sensitive-mybatis
     mybatis 脱敏
    
- ### 使用方法
+### 使用方法
  ```
 @EnableSensitiveService//开启service脱敏
 @EnableSensitiveMybatis//开启mybatis脱敏
