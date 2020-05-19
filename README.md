@@ -13,7 +13,7 @@
 * sensitive-mybatis
     mybatis 脱敏
    
- ###使用方法
+ ### 使用方法
  ```
 @EnableSensitiveService//开启service脱敏
 @EnableSensitiveMybatis//开启mybatis脱敏
@@ -27,7 +27,7 @@ public class MainRun {
 }
 
 ```
-####实体配置 
+#### 实体配置 
 
 **应用于脱敏实体对象 目前SensitiveMode 支持服务接口（AOPSERVIE）和mybatis(MYBATIS)**
 `@SensitiveModel(value = SensitiveMode.AOPSERVIE)`
@@ -71,12 +71,12 @@ public class MainRun {
      */
     BANK_CARD
 ```
-#####服务接口脱敏方法
+##### 服务接口脱敏方法
 **应用于服务接口**
 `@SensitiveServiceAop`
 **应用于服务方法**
 ` @SensitiveServiceAopMethod`
-#####注意事项
+##### 注意事项
 ***目前支持List<entity> 和entity 并且支持嵌套entity例如***
 ```
     @SensitiveField(type= SensitivieFieldType.ENTITY)
