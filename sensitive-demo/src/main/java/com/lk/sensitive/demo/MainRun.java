@@ -3,14 +3,16 @@ package com.lk.sensitive.demo;
 
 import com.lk.sensitive.aop.enums.EnableSensitiveService;
 import com.lk.sensitive.mybatis.enums.EnableSensitiveMybatis;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-@ComponentScan("com.lk.sensitive.demo.*")
 @SpringBootApplication
 @EnableSensitiveService
 @EnableSensitiveMybatis
+@MapperScan("com.lk.sensitive.demo.mapper")
 public class MainRun {
 
     public static void main(String[] args) {
